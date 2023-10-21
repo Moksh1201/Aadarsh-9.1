@@ -7,16 +7,14 @@ import { auth } from './utils/firebase';
 function Login({ a }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loginError, setLoginError] = useState('');
+  const [loginError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      await signInWithEmailAndPassword(auth, email, password);
       navigate('/Signout');
     } catch (error) {
-
       // Display an alert when login fails
       window.alert('Wrong email or password');
     }

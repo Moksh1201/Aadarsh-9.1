@@ -5,7 +5,7 @@ function Card(props)
     <div className="column">
     <img src= {props.avatar} alt ='Staff' width ={200} height ={200}/>
     <h3>{props.name} </h3>
-    <p> {props. position}</p>
+    <p> {props.position}</p>
     <p>{props.author}</p>
 
     </div>

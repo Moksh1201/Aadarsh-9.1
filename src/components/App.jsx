@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import { Routes, Route } from 'react-router-dom'; // Import Routes
-import First_Img from './First_Img';
+import FirstImg from './FirstImg';
 import CardList from './CardList';
 import CardList1 from './CardList1';
 import Sign from './Sign.jsx';
@@ -27,7 +27,7 @@ function App() {
 function Home() {
   return (
     <div>
-      <First_Img />
+      <FirstImg />
       <CardList />
       <CardList1 />
       <Sign />

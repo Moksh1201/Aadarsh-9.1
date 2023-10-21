@@ -30,12 +30,7 @@ function Signup() {
     }
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        formData.email,
-        formData.password
-      );
-      const user = userCredential.user;
+      await createUserWithEmailAndPassword(auth, formData.email, formData.password);
       navigate('/Login');
     } catch (error) {
       console.error('Registration error:', error.message);
