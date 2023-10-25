@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { auth } from './utils/firebase'; // Import the Firebase auth instance
+import { auth } from './utils/firebase';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import './Signout.css';
@@ -17,13 +17,24 @@ function Signout() {
     }
   };
 
-  useEffect(() => { // Fixed the syntax error, use () instead of {}
-    window.history.replaceState(null, document.title, '/'); // Changed 'navigate' to 'history'
+  useEffect(() => {
+    // Add an event listener for popstate to customize navigation
+    const handlePopstate = (e) => {
+      e.preventDefault();
+      navigate('/');
+    };
+
+    window.addEventListener("popstate", handlePopstate);
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("popstate", handlePopstate);
+    };
   }, []);
 
   return (
     <div className="signout-container">
-      <h1>You have successfully logged out of the account</h1> {/* Corrected the message */}
+      <h1>You have successfully logged in to the account</h1>
       <button className="signout-button" onClick={handleSignOut}>Sign Out</button>
     </div>
   );
