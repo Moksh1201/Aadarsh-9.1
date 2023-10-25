@@ -13,6 +13,7 @@ function Login({ a }) {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      window.history.replaceState(null, null, '/');
       navigate('/Signout');
     } catch (error) {
       // Display an alert when login fails
