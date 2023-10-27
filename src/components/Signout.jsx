@@ -1,4 +1,4 @@
-import React from 'react'; // Remove { useEffect }
+import React, { useEffect, useState } from 'react';
 import { auth } from './utils/firebase';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,18 @@ import './Signout.css';
 
 function Signout() {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // Check the user's authentication status
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const handleSignOut = async () => {
     try {
@@ -18,6 +30,10 @@ function Signout() {
       console.error('Signout error:', error.message);
     }
   };
+
+  if (user === null) {
+    return null;
+  }
 
   return (
     <div className="signout-container">
